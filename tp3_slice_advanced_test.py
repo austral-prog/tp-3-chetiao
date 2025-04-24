@@ -1,11 +1,20 @@
-def slice_advanced():
-   texto = input("hola como estas:")
+import io
+import unittest.mock
+import slice_advanced as ex3
 
-   resultado = texto[4::2]
 
-   print(resultado)
-   
-slice_advanced() # Código a implementar utilizando input.
+class TP3SliceAdvancedTestCases(unittest.TestCase):
 
-# Para verificar este ejercicio ejecutar el comando
-# `pytest tp3_slice_advanced_test.py` o `python tp3_slice_advanced_test.py`
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    def test_slice_advanced(self, mock_stdout):
+        with unittest.mock.patch('builtins.input', return_value="Hello, World!"):
+            ex3.slice_advanced()
+            results = mock_stdout.getvalue().splitlines()
+            self.assertEqual(results[0], "o ol!")
+        with unittest.mock.patch('builtins.input', return_value="12345678910"):
+            ex3.slice_advanced()
+            results = mock_stdout.getvalue().splitlines()
+            self.assertEqual(results[1], "5790")
+
+if __name__ == '__main__':
+    unittest.main()
