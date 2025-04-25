@@ -13,4 +13,4 @@ def check_vowels():
     print(f"Contiene o: {contiene_o}")
     print(f"Contiene u: {contiene_u}")
 
-check_vowels()
+
